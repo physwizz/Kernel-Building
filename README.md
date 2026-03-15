@@ -148,7 +148,7 @@ git push -u origin main
 
 
 CONFIG_LOCALVERSION="-physwizz"
-# CONFIG_LOCALVERSION_AUTO is not set
+CONFIG_LOCALVERSION_AUTO=n
 
 
 7. Add the toolchains
@@ -325,10 +325,10 @@ git commit --amend -C HEAD
 
 git remote add -f gpu git@github.com:physwizz/M315f-S-u4.git
 
-# CPU oc
+#CPU oc
 git cherry-pick 0a36a221f1156d199a5241cafb931f64b993ce2c^..9bd157f79a0a7002ae364d9ec355cf00a2842f1f
 
-# Mali GPU oc
+#Mali GPU oc
 
 git cherry-pick ab3547f1cc3b264e9cbc3df8f69cb7aae4826500^..f078bb9cc217b782563483c07d2ccacbb2e55c11
 
@@ -345,32 +345,32 @@ make enforcing branch
 method 1 from Gabriel
 ======================
 
-# togglable selinux
+#togglable selinux
 git remote add -f M346b git@github.com:physwizz/M346B-U-u4.git
 
 git config merge.renameLimit 999999
 
 git cherry-pick 84074a4610ed9d352ac88b7c9e1109b12befbb7e
 
-# Always permissive
+#Always permissive
 
 CONFIG_SECURITY_SELINUX_DEVELOP=y
-# CONFIG_SECURITY_SELINUX_ALWAYS_ENFORCE is not set
+CONFIG_SECURITY_SELINUX_ALWAYS_ENFORCE=n
 CONFIG_SECURITY_SELINUX_ALWAYS_PERMISSIVE=y
 
-# disable defex & proca
+#disable defex & proca
 
-# CONFIG_SECURITY_DEFEX is not set
+CONFIG_SECURITY_DEFEX=n
 
-# CONFIG_PROCA is not set
+CONFIG_PROCA=n
 
-# module force 
+#module force 
 CONFIG_MODULE_FORCE_LOAD=y
 CONFIG_MODULE_UNLOAD=y
 CONFIG_MODULE_FORCE_UNLOAD=y
 
 
-# integrity
+#integrity
 
 # CONFIG_INTEGRITY is not set
 # CONFIG_INTEGRITY_SIGNATURE is not set
