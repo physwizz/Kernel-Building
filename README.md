@@ -196,8 +196,8 @@ or git cherry-pick [hash_id]^..[hash_id] for a range
 Sometimes you get extra lines of text in one of the files that should be deleted. The log on screen will tell you which file is corrupt.
 Search the file for odd lines like this.
 
-#Head
-=========
+
+Head =========
 
 <<<<
 
@@ -236,8 +236,8 @@ git add --all
 git push origin main -f
 
 
-if the change is a cherry pick
-------------------------------
+
+#After a cherry pick
 
 sudo git commit -m "change made" --author="Author's name<author's email>"
 
