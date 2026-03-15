@@ -12,7 +12,7 @@ Use Linux 64bit (I use Linux Mint Mate)
 
 1. Linux setup
 ===============
-# type the followung into the linux terminal
+type the followung into the linux terminal
 
 sudo apt update
 sudo apt upgrade
