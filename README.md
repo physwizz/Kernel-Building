@@ -111,8 +111,6 @@ git clone git@github.com:physwizz/clang-r383902.git
 git clone git@github.com:physwizz/clang-r353983c.git
 https://github.com/VH-Devices/toolchains
 
-
-********************************************************************************************************
 6. Setting up the repo
 ======================
 - set up a folder for your kerel.
@@ -144,7 +142,7 @@ Type "initial"
 Ctrl o
 Ctrl x 
 git push -u origin main
-****DON'T add --all AFTER BUILD****
+(DON'T add --all AFTER BUILD)
 
 
 CONFIG_LOCALVERSION="-physwizz"
@@ -389,28 +387,26 @@ CONFIG_PROCA=n
 
 CONFIG_FIVE=n
 
-# CONFIG_UH is not set
+CONFIG_UH=n
 
-# CONFIG_UH_RKP is not set
+CONFIG_UH_RKP=n
 
 
-# CONFIG_INTEGRITY is not set
-# CONFIG_INTEGRITY_SIGNATURE is not set
-# CONFIG_INTEGRITY_ASYMMETRIC is not set
-# CONFIG_INTEGRITY_TRUSTED_KEYRING is not set
-# CONFIG_INTEGRITY_AUDIT is not set
+CONFIG_INTEGRITY=n
+CONFIG_INTEGRITY_SIGNATURE=n
+CONFIG_INTEGRITY_ASYMMETRIC=n
+CONFIG_INTEGRITY_TRUSTED_KEYRING=n
+CONFIG_INTEGRITY_AUDIT=n
 
-# Also needed in some cases
+#Also needed in some cases
 CONFIG_WATCHDOG=n
-
-
 
 19. kernelSU ksu
 ================
-# https://kernelsu.org/guide/how-to-integrate-for-non-gki.html
+https://kernelsu.org/guide/how-to-integrate-for-non-gki.html
 
 
-# Auto
+#Auto
 curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -
 
 
@@ -419,11 +415,11 @@ CONFIG_HAVE_KPROBES=y
 CONFIG_KPROBE_EVENTS=y
 
 
-# Manually
+#Manually
 
 curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -s v0.9.5
 
-# KernelSU
+#KernelSU
 CONFIG_KSU=y
 
 CONFIG_KPROBES=n
@@ -447,9 +443,9 @@ vfs_statx, usually in fs/stat.c
 and follow instructions for manual changes
 
 C90 forbids mixing declarations and code
-# move code to the beginning of the block
+#move code to the beginning of the block
 
-*******************************************************************************************************
+
 20. rksu 
 ========
 
@@ -459,11 +455,11 @@ curl -LSs "https://raw.githubusercontent.com/rsuntk/KernelSU/main/kernel/setup.s
 
 curl -LSs "https://raw.githubusercontent.com/rsuntk/KernelSU/main/kernel/setup.sh" | bash -s v3.0.0-30-legacy
 
-# susfs
+#susfs
 curl -LSs "https://raw.githubusercontent.com/rsuntk/KernelSU/main/kernel/setup.sh" | bash -s susfs-rksu-master
 
-Hook method
-===========
+#Hook method
+
 Syscall hook:
 Used for Loadable Kernel Module (LKM) or GKI with this hook.
 Default hook method on GKI kernels.
@@ -477,7 +473,7 @@ Manual hook:
 See this repository for more information
 Default hook method on Non-GKI kernels, with condition that CONFIG_KPROBES off by default.
 
-# rksu
+#rksu
 CONFIG_KSU_MANUAL_HOOK=y
 CONFIG_KSU=y
 
@@ -487,7 +483,7 @@ CONFIG_HAVE_KPROBES=n
 
 CONFIG_KPROBE_EVENTS=n
 
-# rksu 4.19 manual
+#rksu 4.19 manual
 git remote add -f rksu-4.19 git@github.com:physwizz/A047f.git
 
 
@@ -497,7 +493,7 @@ git cherry-pick 4f1b4cfe1a702757a9df3d84be758418e639c2e9
 
 21. to add python 2 (often needed for snapdragon)
 ===================
-# https://stackoverflow.com/questions/4340873/how-do-you-switch-between-python-2-and-3-and-vice-versa
+https://stackoverflow.com/questions/4340873/how-do-you-switch-between-python-2-and-3-and-vice-versa
 
 
 sudo apt install pip
@@ -523,27 +519,19 @@ virtualenv -p /usr/bin/python2.7 Vpy27
 source Vpy27/bin/activate
 
 
-# from then on
-sudo -s
+#from then on
 
+sudo -s
 
 virtualenv -p /usr/bin/python2.7 Vpy27
 
 source Vpy27/bin/activate
 
-
-
-
 21. lz4 default in zram
 ======================
-# drivers/block/zram/zram_drv.c
+#drivers/block/zram/zram_drv.c
 
-# change to lz4
-
-**************************************************************************************************
-git config merge.renameLimit 999999
-
-
+#change to lz4
 
 22. To support Apatch
 =====================
@@ -555,8 +543,6 @@ CONFIG_KALLSYMS_ALL=y
 CONFIG_KALLSYMS=y
 CONFIG_KALLSYMS_ALL=n
 Initial support 
-
-
 
 23. to build dtb
 ================
@@ -577,7 +563,6 @@ $TOOLS_LOC/mkdtboimg.py cfg_create $DTB_LOC/dtb.img --dtb-dir $DTB_LOC/exynos $T
 
 $TOOLS_LOC/mkdtboimg.py cfg_create $DTB_LOC/dtbo.img --dtb-dir $DTB_LOC/samsung $TOOLS_LOC/dtbo.cfg
 
---------------------------------------------------------------------------------------------
 
 24. unrecognized option '-EL' error
 ===================================
@@ -585,8 +570,7 @@ $TOOLS_LOC/mkdtboimg.py cfg_create $DTB_LOC/dtbo.img --dtb-dir $DTB_LOC/samsung 
 in makefile
 GCC_TOOLCHAIN_DIR := $(dir $(shell which $(CROSS_COMPILE)elfedit))
 
-
-## remove this line
+##remove this line
 ###CLANG_FLAGS	+= --prefix=$(GCC_TOOLCHAIN_DIR)
 
 CLANG_FLAGS	+= --prefix=$(GCC_TOOLCHAIN_DIR)$(notdir $(CROSS_COMPILE))
@@ -597,7 +581,7 @@ CLANG_FLAGS	+= --prefix=$(GCC_TOOLCHAIN_DIR)$(notdir $(CROSS_COMPILE))
 25. strncpy fix
 ===============
 
-# CONFIG_SECURITY_DEFEX is not set
+CONFIG_SECURITY_DEFEX=n
 
 then
 
@@ -605,10 +589,7 @@ git remote add a226 git@github.com:physwizz/a226-R.git
 git fetch --all
 git cherry-pick 3b1bf239a3f17873cb91537cfdaa03173d396b33
 
-git push origin main -f
-
-
---------------------------------------------------------------------------------------------------------
+git push -u origin main 
 
 26. wifi fix from rissu
 ==========================
@@ -636,15 +617,15 @@ rm -rf drivers/misc/mediatek/connectivity && cd drivers/misc/mediatek/ && git cl
 For Snapdragon from @RissuDesu
 ------------------------------
 
-# CONFIG_MODVERSIONS is not set
+CONFIG_MODVERSIONS=n
 
-# CONFIG_MODULE_SIG is not set
-# CONFIG_MODULE_SIG_FORCE is not set
-# CONFIG_MODULE_SIG_ALL is not set
+CONFIG_MODULE_SIG=n
+CONFIG_MODULE_SIG_FORCE=n
+CONFIG_MODULE_SIG_ALL=n
 
-# CONFIG_MODULE_SIG_SHA512 is not set
+CONFIG_MODULE_SIG_SHA512=n
 
-# CONFIG_MODULE_SIG_HASH is not set
+CONFIG_MODULE_SIG_HASH=n
 
 Open kernel/modules.c, and apply this patch:
 
@@ -689,9 +670,9 @@ git commit
 
 #Updating to a newer tag:
 
-# git fetch qcacld-3.0 <TAG>
+git fetch qcacld-3.0 <TAG>
 
-# git merge -X subtree=drivers/staging/qcacld-3.0 FETCH_HEAD
+git merge -X subtree=drivers/staging/qcacld-3.0 FETCH_HEAD
 
 git remote add wifi-host https://git.codelinaro.org/clo/la/platform/vendor/qcom-opensource/wlan/qca-wifi-host-cmn
 
@@ -714,21 +695,18 @@ git read-tree --prefix=drivers/staging/fw-api -u FETCH_HEAD
 
 git commit
 
-# add to defconfig
+#add to defconfig
 CONFIG_QCA_CLD_WLAN=m
 CONFIG_TCP_CONG_WESTWOOD=y
 CONFIG_TCP_CONG_HTCP=y
 
-# add to drivers/staging/kconfig
+#add to drivers/staging/kconfig
 source "drivers/staging/qcacld-3.0/Kconfig"
 
-# add to drivers/staging/Makefile
+#add to drivers/staging/Makefile
 obj-$(CONFIG_QCA_CLD_WLAN)  +=qcacld-3.0/
 
 build it****
-
-
-
 
 27. a125 oc mediatek
 ====================
@@ -743,7 +721,7 @@ git cherry-pick bb5683f456e9b1df807bf6219876bbb27aa1bc68^..ee4877dab6a387790f414
 #gsi touch fix
 git cherry-pick a0d6921e60c1e749d5b0a65a65de2b60ad660571
 
-# extra optimisations
+#extra optimisations
 git cherry-pick 1864747ba2ed6f7e2e0c021308e2b49b94f6dd1e^..2ff2136501b3f70ad69bf779beca448c7cc57463
 
 
@@ -819,12 +797,9 @@ GitLab (https://git.codelinaro.org/clo/la/platform/vendor/qcom-opensource/wlan/q
 CONFIG_KERNEL_GZIP=y
 
 30. To find the files in a directory which contain this phrase
-==============================================================
 
 grep -rl "gpu_freq_khz_max" drivers/gpu/arm
 
-
-================================================================================================
 31.Overclocked and underclocked
 ===============================
 
@@ -832,14 +807,13 @@ carlos-burelo authored overclocking
 physwizz authored underclocking by modifying oc code (a205 Oct 20 2020)
 
 
-# overclocking and underclocking 130MHz-2210MHz
+#overclocking and underclocking 130MHz-2210MHz
 git remote add -f overclock git@github.com:physwizz/a127f-T-u9.git
 
 git config merge.renameLimit 999999
 
 git cherry-pick 3bd273badf7d4f9031c0694bfd953b42ece91835^..f475322515fcf25b10475a38b47a955cdcad88ff
 
-************************************************************************************************************                
 32. OTHER CHANGES MADE
 ======================
 
