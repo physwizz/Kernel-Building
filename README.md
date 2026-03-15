@@ -196,12 +196,12 @@ or git cherry-pick [hash_id]^..[hash_id] for a range
 Sometimes you get extra lines of text in one of the files that should be deleted. The log on screen will tell you which file is corrupt.
 Search the file for odd lines like this.
 
-Head
+#Head
 =========
 
 <<<<
 
->>>>>>>> Txt txt txt txt
+>>> Txt txt txt txt
 
 Delete the lower line
 Then delete all lines from
@@ -234,7 +234,6 @@ ctrl x (to exit)
 git add --all
 
 git push origin main -f
-
 
 
 if the change is a cherry pick
