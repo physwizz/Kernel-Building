@@ -285,13 +285,9 @@ git push origin main
 git clone git@github.com:physwizz/M356b-U-u1-u4-V-u4.git
 
 To clone a branch
------------------
+
 git clone https://github.com/xcitty2029x/twrp_device_samsung_a04e -b twrp-12.1 device/samsung/a04e
 
-
-
-
-+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 15. for src error
 =================
 git pull origin main
@@ -341,8 +337,8 @@ To change your enforcing kernel to permissive copy and paste the following comma
 make enforcing branch
 
 
-method 1 from Gabriel
-======================
+#method 1 from Gabriel
+
 
 #togglable selinux
 git remote add -f M346b git@github.com:physwizz/M346B-U-u4.git
@@ -371,27 +367,27 @@ CONFIG_MODULE_FORCE_UNLOAD=y
 
 #integrity
 
-# CONFIG_INTEGRITY is not set
-# CONFIG_INTEGRITY_SIGNATURE is not set
-# CONFIG_INTEGRITY_ASYMMETRIC_/home/physwizz/Patch-Recovery-but-fixed/A146m-recovery-patched.imgKEYS is not set
-# CONFIG_INTEGRITY_TRUSTED_KEYRING is not set
-# CONFIG_INTEGRITY_AUDIT is not set
+CONFIG_INTEGRITY=n
+CONFIG_INTEGRITY_SIGNATURE=n
+CONFIG_INTEGRITY_ASYMMETRIC_KEYS=n
+CONFIG_INTEGRITY_TRUSTED_KEYRING=n
+CONFIG_INTEGRITY_AUDIT=n
 
-Method 2 from Thomas 
-====================
+#Method 2 from Thomas 
+
 
 CONFIG_CMDLINE="androidboot.selinux=permissive"
 CONFIG_CMDLINE_EXTEND=y
 
 CONFIG_SECURITY_SELINUX_DEVELOP=y
-# CONFIG_SECURITY_SELINUX_ALWAYS_ENFORCE is not set
+CONFIG_SECURITY_SELINUX_ALWAYS_ENFORCE=n
 CONFIG_SECURITY_SELINUX_ALWAYS_PERMISSIVE=y
 
-# CONFIG_SECURITY_DEFEX is not set
+CONFIG_SECURITY_DEFEX=n
 
-# CONFIG_PROCA is not set
+CONFIG_PROCA=n
 
-# CONFIG_FIVE is not set
+CONFIG_FIVE=n
 
 # CONFIG_UH is not set
 
