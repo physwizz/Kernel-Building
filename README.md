@@ -213,7 +213,6 @@ The log will tell you which file is corrupt. Search it for odd lines like:
 
 ```
 #Head
-=========
 <<<<
 >>> Txt txt txt txt
 ```
@@ -375,7 +374,7 @@ CONFIG_CMDLINE="androidboot.selinux=permissive"
 CONFIG_CMDLINE_EXTEND=y
 
 CONFIG_SECURITY_SELINUX_DEVELOP=y
-# CONFIG_SECURITY_SELINUX_ALWAYS_ENFORCE is not set
+CONFIG_SECURITY_SELINUX_ALWAYS_ENFORCE=n
 CONFIG_SECURITY_SELINUX_ALWAYS_PERMISSIVE=y
 
 # CONFIG_SECURITY_DEFEX is not set
@@ -391,6 +390,24 @@ CONFIG_SECURITY_SELINUX_ALWAYS_PERMISSIVE=y
 # CONFIG_INTEGRITY_AUDIT is not set
 
 # Also needed in some cases:
+CONFIG_SECURITY_DEFEX=n
+
+CONFIG_PROCA=n
+
+CONFIG_FIVE=n
+
+CONFIG_UH=n
+
+CONFIG_UH_RKP=n
+
+
+CONFIG_INTEGRITY=n
+CONFIG_INTEGRITY_SIGNATURE=n
+CONFIG_INTEGRITY_ASYMMETRIC=n
+CONFIG_INTEGRITY_TRUSTED_KEYRING=n
+CONFIG_INTEGRITY_AUDIT=n
+
+#Also needed in some cases
 CONFIG_WATCHDOG=n
 ```
 
@@ -399,6 +416,8 @@ CONFIG_WATCHDOG=n
 ## 19. KernelSU (KSU)
 
 Reference: https://kernelsu.org/guide/how-to-integrate-for-non-gki.html
+19. kernelSU ksu
+https://kernelsu.org/guide/how-to-integrate-for-non-gki.html
 
 ### Auto Integration
 
@@ -415,6 +434,8 @@ CONFIG_KPROBE_EVENTS=y
 ### Manual Integration (specific version)
 
 ```bash
+#Manually
+
 curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -s v0.9.5
 ```
 
@@ -447,6 +468,11 @@ Hook the following functions (typically in `fs/`):
 ---
 
 ## 20. RKSU
+C90 forbids mixing declarations and code
+#move code to the beginning of the block
+
+
+20. rksu 
 
 Reference: https://github.com/rsuntk/KernelSU
 
@@ -489,6 +515,8 @@ git cherry-pick 4f1b4cfe1a702757a9df3d84be758418e639c2e9
 ```
 
 ---
+21. to add python 2 (often needed for snapdragon)
+https://stackoverflow.com/questions/4340873/how-do-you-switch-between-python-2-and-3-and-vice-versa
 
 ## 21. Python 2 Setup
 
@@ -508,6 +536,11 @@ source Vpy27/bin/activate
 For subsequent sessions:
 ```bash
 sudo -s
+
+#from then on
+
+sudo -s
+
 virtualenv -p /usr/bin/python2.7 Vpy27
 source Vpy27/bin/activate
 ```
@@ -521,6 +554,10 @@ In `drivers/block/zram/zram_drv.c`, change the default compressor to `lz4`.
 ---
 
 ## 23. APatch Support
+21. lz4 default in zram
+#drivers/block/zram/zram_drv.c
+
+#change to lz4
 
 Add to defconfig:
 ```
@@ -537,6 +574,8 @@ CONFIG_KALLSYMS_ALL=n
 ## 24. Build DTB
 
 ```bash
+23. to build dtb
+
 make clean && make mrproper
 export CROSS_COMPILE=/home/grahame/toolchains/Toolchains-for-Eureka-GCC-4.9/bin/aarch64-linux-android-
 export ARCH=arm64
@@ -562,6 +601,10 @@ In your `Makefile`, find and replace:
 ```makefile
 # Remove this line:
 CLANG_FLAGS += --prefix=$(GCC_TOOLCHAIN_DIR)
+##remove this line
+###CLANG_FLAGS	+= --prefix=$(GCC_TOOLCHAIN_DIR)
+
+CLANG_FLAGS	+= --prefix=$(GCC_TOOLCHAIN_DIR)$(notdir $(CROSS_COMPILE))
 
 # Replace with:
 CLANG_FLAGS += --prefix=$(GCC_TOOLCHAIN_DIR)$(notdir $(CROSS_COMPILE))
@@ -579,6 +622,7 @@ GCC_TOOLCHAIN_DIR := $(dir $(shell which $(CROSS_COMPILE)elfedit))
 ```
 # CONFIG_SECURITY_DEFEX is not set
 ```
+CONFIG_SECURITY_DEFEX=n
 
 Then:
 
@@ -592,6 +636,15 @@ git push origin main -f
 ---
 
 ## 27. Fix: WiFi
+
+git push -u origin main 
+
+26. wifi fix from rissu
+
+For 4.19
+---------
+
+1. Remove the contents of drivers/misc/mediatek/connectivity
 
 ### MediaTek 4.19
 
@@ -622,6 +675,15 @@ Add to defconfig:
 # CONFIG_MODULE_SIG_SHA512 is not set
 # CONFIG_MODULE_SIG_HASH is not set
 ```
+CONFIG_MODVERSIONS=n
+
+CONFIG_MODULE_SIG=n
+CONFIG_MODULE_SIG_FORCE=n
+CONFIG_MODULE_SIG_ALL=n
+
+CONFIG_MODULE_SIG_SHA512=n
+
+CONFIG_MODULE_SIG_HASH=n
 
 In `kernel/modules.c`, apply this patch:
 
@@ -636,6 +698,7 @@ In `kernel/modules.c`, apply this patch:
 ```
 
 ### MediaTek WiFi (from @david7xw)
+#Wifi fix mtk from @david7xw
 
 ```bash
 git remote add mtk -f git@github.com:Samsung-MT6769-Devs/android_kernel_samsung_a22_remake.git
@@ -643,7 +706,16 @@ git config merge.renameLimit 999999
 git cherry-pick 8fd11aaf66cb0429b8a4f41f9a92c1e720045755
 ```
 
-### Qualcomm WiFi (from Edward)
+8### Qualcomm WiFi (from Edward)
+git cherry-pick  8fd11aaf66cb0429b8a4f41f9a92c1e720045755
+
+
+Qualcomm wifi fix
+
+#From Edward
+
+
+Initial merge:
 
 ```bash
 # qcacld-3.0
@@ -654,6 +726,12 @@ git read-tree --prefix=drivers/staging/qcacld-3.0 -u FETCH_HEAD
 git commit
 
 # qca-wifi-host-cmn
+#Updating to a newer tag:
+
+git fetch qcacld-3.0 <TAG>
+
+git merge -X subtree=drivers/staging/qcacld-3.0 FETCH_HEAD
+
 git remote add wifi-host https://git.codelinaro.org/clo/la/platform/vendor/qcom-opensource/wlan/qca-wifi-host-cmn
 git fetch wifi-host LA.UM.9.15.2.c25
 git merge -s ours --no-commit --allow-unrelated-histories FETCH_HEAD
@@ -670,6 +748,7 @@ git commit
 
 Add to defconfig:
 ```
+#add to defconfig
 CONFIG_QCA_CLD_WLAN=m
 CONFIG_TCP_CONG_WESTWOOD=y
 CONFIG_TCP_CONG_HTCP=y
@@ -677,6 +756,7 @@ CONFIG_TCP_CONG_HTCP=y
 
 Add to `drivers/staging/Kconfig`:
 ```
+#add to drivers/staging/kconfig
 source "drivers/staging/qcacld-3.0/Kconfig"
 ```
 
@@ -686,6 +766,10 @@ obj-$(CONFIG_QCA_CLD_WLAN) += qcacld-3.0/
 ```
 
 ---
+#add to drivers/staging/Makefile
+obj-$(CONFIG_QCA_CLD_WLAN)  +=qcacld-3.0/
+
+#build it
 
 ## 28. MediaTek A125 Overclock
 
@@ -700,6 +784,7 @@ git cherry-pick bb5683f456e9b1df807bf6219876bbb27aa1bc68^..ee4877dab6a387790f414
 git cherry-pick a0d6921e60c1e749d5b0a65a65de2b60ad660571
 
 # Extra optimizations
+#extra optimisations
 git cherry-pick 1864747ba2ed6f7e2e0c021308e2b49b94f6dd1e^..2ff2136501b3f70ad69bf779beca448c7cc57463
 ```
 
@@ -758,14 +843,16 @@ CONFIG_KERNEL_GZIP=y
 ```
 
 ---
+30. To find the files in a directory which contain this phrase
 
 ## 31. Search for a Phrase in Files
 
-```bash
+8```bash
 grep -rl "gpu_freq_khz_max" drivers/gpu/arm
 ```
 
 ---
+31.Overclocked and underclocked
 
 ## 32. CPU/GPU Overclock & Underclock
 
@@ -773,23 +860,31 @@ grep -rl "gpu_freq_khz_max" drivers/gpu/arm
 > Range: 130 MHz – 2210 MHz
 
 ```bash
+#overclocking and underclocking 130MHz-2210MHz
 git remote add -f overclock git@github.com:physwizz/a127f-T-u9.git
 git config merge.renameLimit 999999
 git cherry-pick 3bd273badf7d4f9031c0694bfd953b42ece91835^..f475322515fcf25b10475a38b47a955cdcad88ff
 ```
 
 ---
+32. OTHER CHANGES MADE
 
 ## 33. Other Common Config Changes
 
 ```
 CONFIG_LOCALVERSION="-physwizz"
-# CONFIG_LOCALVERSION_AUTO is not set
+CONFIG_LOCALVERSION_AUTO=n
 
 # Stack protection
 # CONFIG_CC_STACKPROTECTOR_STRONG is not set
 
 # CPU frequency governors
+CONFIG_CC_STACKPROTECTOR_STRONG=n
+
+CONFIG_SECURITY_DEFEX=n
+
+CONFIG_PROCA=n
+
 CONFIG_CPU_FREQ_GOV_PERFORMANCE=y
 CONFIG_CPU_FREQ_GOV_POWERSAVE=y
 CONFIG_CPU_FREQ_GOV_USERSPACE=y
@@ -831,6 +926,35 @@ CONFIG_UH=n
 # CONFIG_INTEGRITY_TRUSTED_KEYRING is not set
 # CONFIG_INTEGRITY_AUDIT is not set
 # CONFIG_SECURITY_DSMS is not set
+CONFIG_TIMA=n
+CONFIG_TIMA_LKMAUTH=n
+CONFIG_TIMA_LKM_BLOCK=n
+CONFIG_TIMA_LKMAUTH_CODE_PROT=n
+CONFIG_UH=n
+CONFIG_UH_RKP=n
+CONFIG_RKP_KDP=n
+CONFIG_RKP_NS_PROT=n
+CONFIG_RKP_DMAP_PROT=n
+
+CONFIG_TIMA_LOG=n
+CONFIG_KNOX_KAP=n
+
+CONFIG_DM_VERITY=n
+
+CONFIG_SEC_RESTRICT_ROOTING=n
+
+
+CONFIG_SEC_RESTRICT_SETUID=n
+CONFIG_SEC_RESTRICT_FORK=n
+CONFIG_SEC_RESTRICT_ROOTING_LOG=n
+
+CONFIG_INTEGRITY=n
+CONFIG_INTEGRITY_SIGNATURE=y
+CONFIG_INTEGRITY_ASYMMETRIC_KEYS=n
+CONFIG_INTEGRITY_TRUSTED_KEYRING=y
+CONFIG_INTEGRITY_AUDIT=n
+
+CONFIG_SECURITY_DSMS=n
 
 # Module force loading
 CONFIG_MODULE_FORCE_LOAD=y
@@ -840,13 +964,19 @@ CONFIG_MODULE_FORCE_UNLOAD=y
 # Compiler optimizations
 CONFIG_CC_OPTIMIZE_FOR_PERFORMANCE=y
 CONFIG_CC_OPTIMIZE_FOR_PERFORMANCE_O3_OFAST_SUB_OPTIONS=y
-# CONFIG_CC_OPTIMIZE_FOR_SIZE is not set
+CONFIG_CC_OPTIMIZE_FOR_SIZE=n
 
 # ZRAM
 CONFIG_ZRAM=y
 CONFIG_ZRAM_WRITEBACK=y
 CONFIG_ZRAM_MEMORY_TRACKING=y
 # CONFIG_CRYPTO_LZO is not set
+CONFIG_KNOX_NCM=n
+CONFIG_ZRAM=y
+CONFIG_ZRAM_WRITEBACK=y
+CONFIG_ZRAM_MEMORY_TRACKING=y
+
+CONFIG_CRYPTO_LZO=n
 CONFIG_CRYPTO_LZ4=y
 
 # Kernel image format
@@ -854,5 +984,13 @@ CONFIG_KERNEL_GZIP=y
 ```
 
 ---
+Configures Output of image gz
+
+#module force 
+CONFIG_MODULE_FORCE_LOAD=y
+CONFIG_MODULE_UNLOAD=y
+CONFIG_MODULE_FORCE_UNLOAD=y
+
+CONFIG_FIVE=n
 
 *@physwizz*
