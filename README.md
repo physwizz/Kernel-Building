@@ -640,8 +640,7 @@ Open kernel/modules.c, and apply this patch:
    if (!get_modinfo(info, "intree")) {
 
 
-Wifi fix mtk from @david7xw
----------------------------
+#Wifi fix mtk from @david7xw
 
 git remote add mtk -f git@github.com:Samsung-MT6769-Devs/android_kernel_samsung_a22_remake.git
 
@@ -652,9 +651,9 @@ git cherry-pick  8fd11aaf66cb0429b8a4f41f9a92c1e720045755
 
 
 Qualcomm wifi fix
------------------
-From Edward
-===========
+
+#From Edward
+
 
 Initial merge:
 
@@ -706,7 +705,7 @@ source "drivers/staging/qcacld-3.0/Kconfig"
 #add to drivers/staging/Makefile
 obj-$(CONFIG_QCA_CLD_WLAN)  +=qcacld-3.0/
 
-build it****
+#build it
 
 27. a125 oc mediatek
 ====================
@@ -801,7 +800,6 @@ CONFIG_KERNEL_GZIP=y
 grep -rl "gpu_freq_khz_max" drivers/gpu/arm
 
 31.Overclocked and underclocked
-===============================
 
 carlos-burelo authored overclocking
 physwizz authored underclocking by modifying oc code (a205 Oct 20 2020)
@@ -818,13 +816,13 @@ git cherry-pick 3bd273badf7d4f9031c0694bfd953b42ece91835^..f475322515fcf25b10475
 ======================
 
 CONFIG_LOCALVERSION="-physwizz"
-# CONFIG_LOCALVERSION_AUTO is not set
+CONFIG_LOCALVERSION_AUTO=n
 
-# CONFIG_CC_STACKPROTECTOR_STRONG is not set
+CONFIG_CC_STACKPROTECTOR_STRONG=n
 
-# CONFIG_SECURITY_DEFEX is not set
+CONFIG_SECURITY_DEFEX=n
 
-# CONFIG_PROCA is not set
+CONFIG_PROCA=n
 
 CONFIG_CPU_FREQ_GOV_PERFORMANCE=y
 CONFIG_CPU_FREQ_GOV_POWERSAVE=y
@@ -836,71 +834,56 @@ CONFIG_CPU_FREQ_GOV_INTERACTIVE=y
 
 CONFIG_CPU_FREQ_GOV_CONSERVATIVE=y
 
-# CONFIG_TIMA is not set
-# CONFIG_TIMA_LKMAUTH is not set
-# CONFIG_TIMA_LKM_BLOCK is not set
-# CONFIG_TIMA_LKMAUTH_CODE_PROT is not set
-# CONFIG_UH is not set
-# CONFIG_UH_RKP is not set
-# CONFIG_RKP_KDP is not set
-# CONFIG_RKP_NS_PROT is not set
-# CONFIG_RKP_DMAP_PROT is not set
+CONFIG_TIMA=n
+CONFIG_TIMA_LKMAUTH=n
+CONFIG_TIMA_LKM_BLOCK=n
+CONFIG_TIMA_LKMAUTH_CODE_PROT=n
+CONFIG_UH=n
+CONFIG_UH_RKP=n
+CONFIG_RKP_KDP=n
+CONFIG_RKP_NS_PROT=n
+CONFIG_RKP_DMAP_PROT=n
 
-# CONFIG_TIMA_LOG is not set
-# CONFIG_KNOX_KAP is not set
+CONFIG_TIMA_LOG=n
+CONFIG_KNOX_KAP=n
 
-# CONFIG_DM_VERITY is not set
+CONFIG_DM_VERITY=n
 
-# CONFIG_SEC_RESTRICT_ROOTING is not set
+CONFIG_SEC_RESTRICT_ROOTING=n
 
 
-# CONFIG_SEC_RESTRICT_SETUID is not set
-# CONFIG_SEC_RESTRICT_FORK is not set
-# CONFIG_SEC_RESTRICT_ROOTING_LOG is not set
+CONFIG_SEC_RESTRICT_SETUID=n
+CONFIG_SEC_RESTRICT_FORK=n
+CONFIG_SEC_RESTRICT_ROOTING_LOG=n
 
-# CONFIG_INTEGRITY is not set
+CONFIG_INTEGRITY=n
 CONFIG_INTEGRITY_SIGNATURE=y
-# CONFIG_INTEGRITY_ASYMMETRIC_KEYS is not set
+CONFIG_INTEGRITY_ASYMMETRIC_KEYS=n
 CONFIG_INTEGRITY_TRUSTED_KEYRING=y
-# CONFIG_INTEGRITY_AUDIT is not set
+CONFIG_INTEGRITY_AUDIT=n
 
-# CONFIG_SECURITY_DSMS is not set
-# CONFIG_PROCA is not set
+CONFIG_SECURITY_DSMS=n
+CONFIG_PROCA=n
 
 CONFIG_CC_OPTIMIZE_FOR_PERFORMANCE=y
 CONFIG_CC_OPTIMIZE_FOR_PERFORMANCE_O3_OFAST_SUB_OPTIONS=y
-# CONFIG_CC_OPTIMIZE_FOR_SIZE is not set
+CONFIG_CC_OPTIMIZE_FOR_SIZE=n
 
-# CONFIG_KNOX_NCM is not set
+CONFIG_KNOX_NCM=n
 CONFIG_ZRAM=y
 CONFIG_ZRAM_WRITEBACK=y
 CONFIG_ZRAM_MEMORY_TRACKING=y
 
-# CONFIG_CRYPTO_LZO is not set
+CONFIG_CRYPTO_LZO=n
 CONFIG_CRYPTO_LZ4=y
 
 CONFIG_KERNEL_GZIP=y
 Configures Output of image gz
 
-
-# disable defex & proca
-# CONFIG_SECURITY_DEFEX is not set
-
-# CONFIG_PROCA is not set
-
-# module force 
+#module force 
 CONFIG_MODULE_FORCE_LOAD=y
 CONFIG_MODULE_UNLOAD=y
 CONFIG_MODULE_FORCE_UNLOAD=y
-
-
-# integrity
-
-# CONFIG_INTEGRITY is not set
-# CONFIG_INTEGRITY_SIGNATURE is not set
-# CONFIG_INTEGRITY_ASYMMETRIC_KEYS is not set
-# CONFIG_INTEGRITY_TRUSTED_KEYRING is not set
-# CONFIG_INTEGRITY_AUDIT is not set
 
 #disable samsung anti-root
  CONFIG_UH=n
