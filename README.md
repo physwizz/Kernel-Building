@@ -161,6 +161,8 @@ type
 
 ./build_kernel.sh
 
+note: you may need to edit properties to allow executing file as a program 
+
 
 9. to change repos
 ==================
