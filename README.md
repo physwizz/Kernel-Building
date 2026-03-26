@@ -473,6 +473,9 @@ CONFIG_HAVE_SYSCALL_TRACEPOINTS=y
 
 Manual hook:
 See this repository for more information
+
+https://github.com/rksuorg/kernel_patches
+
 Default hook method on Non-GKI kernels, with condition that CONFIG_KPROBES off by default.
 
 #rksu
