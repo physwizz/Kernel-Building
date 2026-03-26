@@ -60,9 +60,8 @@ make kernelversion
 4. Github
 
 
-1. Go to github.com and Open a new Repo 
-
-2. Set up SSH 
+- Go to github.com and Open a new Repo 
+- Set up SSH 
 Note: You will need a new SSH key for each computer you use.
 
 git config --global user.email "you@example.com"
