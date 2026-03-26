@@ -11,7 +11,7 @@ Requirements
 Use Linux 64bit (I use Linux Mint Mate)
 
 1. Linux setup
-===============
+
 type the followung into the linux terminal
 
 sudo apt update
@@ -38,17 +38,13 @@ sudo aptitude install libssl-dev
 sudo apt-get install libtinfo5
 
 2. install repo
-===============
 
 mkdir -p ~/.bin
 PATH="${HOME}/.bin:${PATH}"
 curl https://storage.googleapis.com/git-repo-downloads/repo > ~/.bin/repo
 chmod a+rx ~/.bin/repo
 
-
-
 3. Kernel setup
-===============
 
 Download the Source Code (https://opensource.samsung.com/main)
         Search for A205 and select QQ version (Latin)
@@ -62,7 +58,8 @@ to find your kernel version type
 make kernelversion	
 
 4. Github
-=========
+
+
 1. Go to github.com and Open a new Repo 
 
 2. Set up SSH 
@@ -91,7 +88,7 @@ New SSH key
 Paste key here
 
 5. Toolchains
-=============
+
 
 You can download the toolchain for your device directly from Samsung Open source by searching fot "toolchain"
 
@@ -112,7 +109,7 @@ git clone git@github.com:physwizz/clang-r353983c.git
 https://github.com/VH-Devices/toolchains
 
 6. Setting up the repo
-======================
+
 - set up a folder for your kerel.
 - download the kernel source code from Samsung Open Source
 - Extract the Kernel.tar.gz into the kernel folder
@@ -150,12 +147,11 @@ CONFIG_LOCALVERSION_AUTO=n
 
 
 7. Add the toolchains
-=====================
+
 Add the toolchains as explained in README_Kernel.txt
 You may want to create the "toolchain" directory and insert 2 of my toolchains (usually GCC and Clang)
 
 8. To Build the kernel.
-======================
 
 type 
 
@@ -165,7 +161,7 @@ note: you may need to edit properties to allow executing file as a program
 
 
 9. to change repos
-==================
+
 
 open a terminal in the kernel directory
 
@@ -175,7 +171,7 @@ git remote add origin <new repo>
 git fetch --all
 
 10. to cherry-pick
-=================
+
 
 git remote add other https:<other address>
 
@@ -197,7 +193,7 @@ Sometimes you get extra lines of text in one of the files that should be deleted
 Search the file for odd lines like this.
 
 
-Head =========
+Head
 
 <<<<
 
@@ -220,7 +216,7 @@ git push origin main -f
 
 
 11. to push changes
-==================
+
 After you build
 
 make clean && make mrproper
@@ -255,7 +251,7 @@ git push origin main
 
 
 12. If it doesn't work or you change your mind
-==============================================
+
 
 git revert <commit hash code>
 git push origin main
@@ -273,14 +269,13 @@ git push origin main
 
 
 13. to edit last commit
-=======================
+
 
 sudo git commit --amend
 git push origin main
 
 
 14. To clone a repo
-===================
 
 git clone git@github.com:physwizz/M356b-U-u1-u4-V-u4.git
 
@@ -289,7 +284,7 @@ To clone a branch
 git clone https://github.com/xcitty2029x/twrp_device_samsung_a04e -b twrp-12.1 device/samsung/a04e
 
 15. for src error
-=================
+
 git pull origin main
 
 git add a_text_file.txt 
@@ -303,10 +298,10 @@ git add initialgit
 git commit -m "Fix refs" 
 sudo git push origin main -f
 
-----------------------------------------------------------------------------------
 
 16. to remove large files from git --all
-======================================
+
+
 git rm --cached <filename>
 
 git rm --cached <directory> -r
@@ -316,7 +311,6 @@ git commit --amend -C HEAD
 
 
 17. for Exynos 9611 Mali GPU oc
-===============================
 
 git remote add -f gpu git@github.com:physwizz/M315f-S-u4.git
 
@@ -330,7 +324,7 @@ git cherry-pick ab3547f1cc3b264e9cbc3df8f69cb7aae4826500^..f078bb9cc217b78256348
 
 
 18. Permissive
-==============
+
 
 To change your enforcing kernel to permissive copy and paste the following commands into terminal. Then build it
 
@@ -338,7 +332,6 @@ make enforcing branch
 
 
 #method 1 from Gabriel
-
 
 #togglable selinux
 git remote add -f M346b git@github.com:physwizz/M346B-U-u4.git
@@ -375,7 +368,6 @@ CONFIG_INTEGRITY_AUDIT=n
 
 #Method 2 from Thomas 
 
-
 CONFIG_CMDLINE="androidboot.selinux=permissive"
 CONFIG_CMDLINE_EXTEND=y
 
@@ -404,7 +396,7 @@ CONFIG_INTEGRITY_AUDIT=n
 CONFIG_WATCHDOG=n
 
 19. kernelSU ksu
-================
+
 https://kernelsu.org/guide/how-to-integrate-for-non-gki.html
 
 
@@ -449,7 +441,6 @@ C90 forbids mixing declarations and code
 
 
 20. rksu 
-========
 
 https://github.com/rsuntk/KernelSU
 
@@ -497,7 +488,7 @@ git config merge.renameLimit 999999
 git cherry-pick 4f1b4cfe1a702757a9df3d84be758418e639c2e9
 
 21. to add python 2 (often needed for snapdragon)
-===================
+
 https://stackoverflow.com/questions/4340873/how-do-you-switch-between-python-2-and-3-and-vice-versa
 
 
@@ -533,13 +524,13 @@ virtualenv -p /usr/bin/python2.7 Vpy27
 source Vpy27/bin/activate
 
 21. lz4 default in zram
-======================
+
 #drivers/block/zram/zram_drv.c
 
 #change to lz4
 
 22. To support Apatch
-=====================
+
 
 You need modify kernel source and build  to enable
 CONFIG_KALLSYMS=y 
@@ -550,7 +541,7 @@ CONFIG_KALLSYMS_ALL=n
 Initial support 
 
 23. to build dtb
-================
+
 
 make clean && make mrproper
 export CROSS_COMPILE=/home/grahame/toolchains/Toolchains-for-Eureka-GCC-4.9/bin/aarch64-linux-android-
@@ -570,7 +561,7 @@ $TOOLS_LOC/mkdtboimg.py cfg_create $DTB_LOC/dtbo.img --dtb-dir $DTB_LOC/samsung 
 
 
 24. unrecognized option '-EL' error
-===================================
+
 
 in makefile
 GCC_TOOLCHAIN_DIR := $(dir $(shell which $(CROSS_COMPILE)elfedit))
@@ -581,10 +572,8 @@ GCC_TOOLCHAIN_DIR := $(dir $(shell which $(CROSS_COMPILE)elfedit))
 CLANG_FLAGS	+= --prefix=$(GCC_TOOLCHAIN_DIR)$(notdir $(CROSS_COMPILE))
 
 
-
-
 25. strncpy fix
-===============
+
 
 CONFIG_SECURITY_DEFEX=n
 
@@ -597,7 +586,7 @@ git cherry-pick 3b1bf239a3f17873cb91537cfdaa03173d396b33
 git push -u origin main 
 
 26. wifi fix from rissu
-==========================
+
 
 For 4.19
 ---------
