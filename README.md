@@ -10,8 +10,7 @@ Requirements
 
 Use Linux 64bit (I use Linux Mint Mate)
 
-1. Linux setup
---------------
+# 1. Linux setup
 
 type the following into the linux terminal
 
