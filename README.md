@@ -35,8 +35,7 @@ sudo aptitude install libssl-dev
 
 sudo apt-get install libtinfo5
 
-2. install repo
-----------------
+* 2. install repo
 
 mkdir -p ~/.bin
 PATH="${HOME}/.bin:${PATH}"
