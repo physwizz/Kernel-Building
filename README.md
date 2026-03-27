@@ -3,7 +3,6 @@
 
 Building a Kernel for beginners
 @physwizz
-************************************
 
 
 Requirements
@@ -51,12 +50,11 @@ Download the Source Code (https://opensource.samsung.com/main)
 
 
 Kernel version
-**************
+
 to find your kernel version type
 make kernelversion	
 
-4. Github
-
+# 4. Github
 
 - Go to github.com and Open a new Repo 
 - Set up SSH 
@@ -64,7 +62,6 @@ Note: You will need a new SSH key for each computer you use.
 
 git config --global user.email "you@example.com"
 git config --global user.name "Your Github Name"
-
 
 ssh-keygen -t rsa -b 4096 -C "you@example.com"
 
@@ -84,7 +81,7 @@ New SSH key
 
 Paste key here
 
-5. Toolchains
+# 5. Toolchains
 
 
 You can download the toolchain for your device directly from Samsung Open source by searching fot "toolchain"
@@ -105,7 +102,7 @@ git clone git@github.com:physwizz/clang-r383902.git
 git clone git@github.com:physwizz/clang-r353983c.git
 https://github.com/VH-Devices/toolchains
 
-6. Setting up the repo
+# 6. Setting up the repo
 
 - set up a folder for your kerel.
 - download the kernel source code from Samsung Open Source
@@ -143,12 +140,12 @@ CONFIG_LOCALVERSION="-physwizz"
 CONFIG_LOCALVERSION_AUTO=n
 
 
-7. Add the toolchains
+# 7. Add the toolchains
 
 Add the toolchains as explained in README_Kernel.txt
 You may want to create the "toolchain" directory and insert 2 of my toolchains (usually GCC and Clang)
 
-8. To Build the kernel.
+# 8. To Build the kernel.
 
 type 
 
@@ -157,7 +154,7 @@ type
 note: you may need to edit properties to allow executing file as a program 
 
 
-9. to change repos
+# 9. to change repos
 
 
 open a terminal in the kernel directory
@@ -167,7 +164,7 @@ git remote add origin <new repo>
 
 git fetch --all
 
-10. to cherry-pick
+# 10. to cherry-pick
 
 
 git remote add other https:<other address>
@@ -212,7 +209,7 @@ git commit -a
 git push origin main -f
 
 
-11. to push changes
+# 11. to push changes
 
 After you build
 
@@ -227,7 +224,6 @@ ctrl x (to exit)
 git add --all
 
 git push origin main -f
-
 
 
 #After a cherry pick
@@ -246,8 +242,7 @@ then
 git push origin main
 
 
-
-12. If it doesn't work or you change your mind
+# 12. If it doesn't work or you change your mind
 
 
 git revert <commit hash code>
@@ -265,14 +260,14 @@ git push origin main
 
 
 
-13. to edit last commit
+# 13. to edit last commit
 
 
 sudo git commit --amend
 git push origin main
 
 
-14. To clone a repo
+# 14. To clone a repo
 
 git clone git@github.com:physwizz/M356b-U-u1-u4-V-u4.git
 
@@ -280,7 +275,7 @@ To clone a branch
 
 git clone https://github.com/xcitty2029x/twrp_device_samsung_a04e -b twrp-12.1 device/samsung/a04e
 
-15. for src error
+# 15. for src error
 
 git pull origin main
 
@@ -296,7 +291,7 @@ git commit -m "Fix refs"
 sudo git push origin main -f
 
 
-16. to remove large files from git --all
+# 16. to remove large files from git --all
 
 
 git rm --cached <filename>
@@ -307,7 +302,7 @@ then
 git commit --amend -C HEAD 
 
 
-17. for Exynos 9611 Mali GPU oc
+# 17. for Exynos 9611 Mali GPU oc
 
 git remote add -f gpu git@github.com:physwizz/M315f-S-u4.git
 
@@ -319,14 +314,11 @@ git cherry-pick 0a36a221f1156d199a5241cafb931f64b993ce2c^..9bd157f79a0a7002ae364
 git cherry-pick ab3547f1cc3b264e9cbc3df8f69cb7aae4826500^..f078bb9cc217b782563483c07d2ccacbb2e55c11
 
 
-
-18. Permissive
-
+# 18. Permissive
 
 To change your enforcing kernel to permissive copy and paste the following commands into terminal. Then build it
 
 make enforcing branch
-
 
 #method 1 from Gabriel
 
@@ -382,7 +374,6 @@ CONFIG_UH=n
 
 CONFIG_UH_RKP=n
 
-
 CONFIG_INTEGRITY=n
 CONFIG_INTEGRITY_SIGNATURE=n
 CONFIG_INTEGRITY_ASYMMETRIC=n
@@ -392,7 +383,7 @@ CONFIG_INTEGRITY_AUDIT=n
 #Also needed in some cases
 CONFIG_WATCHDOG=n
 
-19. kernelSU ksu
+# 19. kernelSU ksu
 
 https://kernelsu.org/guide/how-to-integrate-for-non-gki.html
 
@@ -437,7 +428,7 @@ C90 forbids mixing declarations and code
 #move code to the beginning of the block
 
 
-20. rksu 
+# 20. rksu 
 
 https://github.com/rsuntk/KernelSU
 
@@ -484,10 +475,10 @@ git config merge.renameLimit 999999
 
 git cherry-pick 4f1b4cfe1a702757a9df3d84be758418e639c2e9
 
-21. to add python 2 (often needed for snapdragon)
+# 21. to add python 2 
+(often needed for snapdragon)
 
 https://stackoverflow.com/questions/4340873/how-do-you-switch-between-python-2-and-3-and-vice-versa
-
 
 sudo apt install pip
 
@@ -505,9 +496,7 @@ which python2.7
 
 which python3
 
-
 virtualenv -p /usr/bin/python2.7 Vpy27
-
 
 source Vpy27/bin/activate
 
@@ -520,13 +509,13 @@ virtualenv -p /usr/bin/python2.7 Vpy27
 
 source Vpy27/bin/activate
 
-21. lz4 default in zram
+# 22. lz4 default in zram
 
 #drivers/block/zram/zram_drv.c
 
 #change to lz4
 
-22. To support Apatch
+# 23. To support Apatch
 
 
 You need modify kernel source and build  to enable
@@ -537,8 +526,7 @@ CONFIG_KALLSYMS=y
 CONFIG_KALLSYMS_ALL=n
 Initial support 
 
-23. to build dtb
-
+# 24. to build dtb
 
 make clean && make mrproper
 export CROSS_COMPILE=/home/grahame/toolchains/Toolchains-for-Eureka-GCC-4.9/bin/aarch64-linux-android-
@@ -553,12 +541,10 @@ make
 
 $TOOLS_LOC/mkdtboimg.py cfg_create $DTB_LOC/dtb.img --dtb-dir $DTB_LOC/exynos $TOOLS_LOC/dtb.cfg
 
-
 $TOOLS_LOC/mkdtboimg.py cfg_create $DTB_LOC/dtbo.img --dtb-dir $DTB_LOC/samsung $TOOLS_LOC/dtbo.cfg
 
 
-24. unrecognized option '-EL' error
-
+# 25. unrecognized option '-EL' error
 
 in makefile
 GCC_TOOLCHAIN_DIR := $(dir $(shell which $(CROSS_COMPILE)elfedit))
@@ -569,8 +555,7 @@ GCC_TOOLCHAIN_DIR := $(dir $(shell which $(CROSS_COMPILE)elfedit))
 CLANG_FLAGS	+= --prefix=$(GCC_TOOLCHAIN_DIR)$(notdir $(CROSS_COMPILE))
 
 
-25. strncpy fix
-
+# 26. strncpy fix
 
 CONFIG_SECURITY_DEFEX=n
 
@@ -582,28 +567,25 @@ git cherry-pick 3b1bf239a3f17873cb91537cfdaa03173d396b33
 
 git push -u origin main 
 
-26. wifi fix from rissu
+# 27. wifi fix from rissu
 
 
-For 4.19
----------
+#For 4.19
 
-1. Remove the contents of drivers/misc/mediatek/connectivity
+- Remove the contents of drivers/misc/mediatek/connectivity
 
-2. Copy the files from https://github.com/rsuntkOrgs/mtk_connectivity_module to drivers/misc/mediatek/connectivity
+- Copy the files from https://github.com/rsuntkOrgs/mtk_connectivity_module to drivers/misc/mediatek/connectivity
 
-3. Build the Kernel
+- Build the Kernel
 
 » Note: The driver currently only support 4.19 kernel, and only support mt6768 and mt6765 platform (tested on A055F, A045F, and A042F)
 
-For 4.14
---------
+#For 4.14
 
 Updated.
 quick update command:
 
 rm -rf drivers/misc/mediatek/connectivity && cd drivers/misc/mediatek/ && git clone https://github.com/rsuntkOrgs/mtk_connectivity_module --depth=1 -b staging-4.14 connectivity && rm -rf connectivity/.git && cd ../../..
-
 
 For Snapdragon from @RissuDesu
 ------------------------------
@@ -641,10 +623,9 @@ git config merge.renameLimit 999999
 git cherry-pick  8fd11aaf66cb0429b8a4f41f9a92c1e720045755
 
 
-Qualcomm wifi fix
+#Qualcomm wifi fix
 
 #From Edward
-
 
 Initial merge:
 
@@ -698,7 +679,7 @@ obj-$(CONFIG_QCA_CLD_WLAN)  +=qcacld-3.0/
 
 #build it
 
-27. a125 oc mediatek
+# 28. a125 oc mediatek
 ====================
 
 git remote add a125 -f git@github.com:physwizz/a125f-S.git
@@ -715,8 +696,7 @@ git cherry-pick a0d6921e60c1e749d5b0a65a65de2b60ad660571
 git cherry-pick 1864747ba2ed6f7e2e0c021308e2b49b94f6dd1e^..2ff2136501b3f70ad69bf779beca448c7cc57463
 
 
-28. X210 fix Carlo Dandan cdpkp method
-======================================
+#29. X210 fix Carlo Dandan cdpkp method
 
 git remote add qcacld-3.0 https://git.codelinaro.org/clo/la/platform/vendor/qcom-opensource/wlan/qcacld-3.0
 
@@ -728,7 +708,6 @@ git read-tree --prefix=drivers/staging/qcacld-3.0 -u FETCH_HEAD
 
 git commit
 
-
 git remote add fw-api https://git.codelinaro.org/clo/la/platform/vendor/qcom-opensource/wlan/fw-api
 
 git fetch fw-api LA.UM.9.16.r1-14900.01-MANNAR.QSSI12.0
@@ -738,7 +717,6 @@ git merge -s ours --no-commit --allow-unrelated-histories FETCH_HEAD
 git read-tree --prefix=drivers/staging/fw-api -u FETCH_HEAD
 
 git commit
-
 
 git remote add qca https://git.codelinaro.org/clo/la/platform/vendor/qcom-opensource/wlan/qca-wifi-host-cmn
 
@@ -760,9 +738,7 @@ git read-tree --prefix=drivers/staging/data -u FETCH_HEAD
 
 git commit
 
-
 git remote add ext https://git.codelinaro.org/clo/la/platform/vendor/qcom/opensource/datarmnet-ext
-
 
 git fetch ext LA.UM.9.16.r1-14900.01-MANNAR.QSSI12.0
 
@@ -781,16 +757,15 @@ git cherry-pick 6993575bd4a22a227291bc2b74b6f7cb2cc8f9c8^..78a7cc4a5cfefc0274ff0
 GitLab (https://git.codelinaro.org/clo/la/platform/vendor/qcom-opensource/wlan/qcacld-3.0)
 
 
-29. to build Image.gz
-=====================
+# 30. to build Image.gz
 
 CONFIG_KERNEL_GZIP=y
 
-30. To find the files in a directory which contain this phrase
+# 31. To find the files in a directory which contain this phrase
 
 grep -rl "gpu_freq_khz_max" drivers/gpu/arm
 
-31.Overclocked and underclocked
+# 32. Overclocked and underclocked
 
 carlos-burelo authored overclocking
 physwizz authored underclocking by modifying oc code (a205 Oct 20 2020)
@@ -803,8 +778,7 @@ git config merge.renameLimit 999999
 
 git cherry-pick 3bd273badf7d4f9031c0694bfd953b42ece91835^..f475322515fcf25b10475a38b47a955cdcad88ff
 
-32. OTHER CHANGES MADE
-======================
+# 33. OTHER CHANGES MADE
 
 CONFIG_LOCALVERSION="-physwizz"
 CONFIG_LOCALVERSION_AUTO=n
