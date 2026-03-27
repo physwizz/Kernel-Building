@@ -35,15 +35,14 @@ sudo aptitude install libssl-dev
 
 sudo apt-get install libtinfo5
 
-* 2. install repo
+# 2. install repo
 
 mkdir -p ~/.bin
 PATH="${HOME}/.bin:${PATH}"
 curl https://storage.googleapis.com/git-repo-downloads/repo > ~/.bin/repo
 chmod a+rx ~/.bin/repo
 
-3. Kernel setup
-----------------
+# 3. Kernel setup
 
 Download the Source Code (https://opensource.samsung.com/main)
         Search for A205 and select QQ version (Latin)
