@@ -11,8 +11,9 @@ Requirements
 Use Linux 64bit (I use Linux Mint Mate)
 
 1. Linux setup
+--------------
 
-type the followung into the linux terminal
+type the following into the linux terminal
 
 sudo apt update
 sudo apt upgrade
@@ -21,9 +22,7 @@ sudo apt-get install git-all make gcc
 git config --global user.email "you@example.com"
 git config --global user.name "Your Github Name"
 
-
 sudo apt install python-is-python3 build-essential openssl pip
-
 
 pip install virtualenv
 
@@ -38,6 +37,7 @@ sudo aptitude install libssl-dev
 sudo apt-get install libtinfo5
 
 2. install repo
+----------------
 
 mkdir -p ~/.bin
 PATH="${HOME}/.bin:${PATH}"
@@ -45,6 +45,7 @@ curl https://storage.googleapis.com/git-repo-downloads/repo > ~/.bin/repo
 chmod a+rx ~/.bin/repo
 
 3. Kernel setup
+----------------
 
 Download the Source Code (https://opensource.samsung.com/main)
         Search for A205 and select QQ version (Latin)
