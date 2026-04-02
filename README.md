@@ -450,6 +450,12 @@ CONFIG_KPROBES=y
 CONFIG_KRETPROBES=y
 CONFIG_HAVE_SYSCALL_TRACEPOINTS=y
 
+you might also need 
+CONFIG_UH=n
+CONFIG_RKP=n
+CONFIG_KDP=n
+CONFIG_KDP_CRED=n
+
 Manual hook:
 See this repository for more information
 
