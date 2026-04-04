@@ -555,8 +555,11 @@ $TOOLS_LOC/mkdtboimg.py cfg_create $DTB_LOC/dtbo.img --dtb-dir $DTB_LOC/samsung 
 in makefile
 GCC_TOOLCHAIN_DIR := $(dir $(shell which $(CROSS_COMPILE)elfedit))
 
-##remove this line
-###CLANG_FLAGS	+= --prefix=$(GCC_TOOLCHAIN_DIR)
+remove this line
+
+CLANG_FLAGS	+= --prefix=$(GCC_TOOLCHAIN_DIR)
+
+and add this
 
 CLANG_FLAGS	+= --prefix=$(GCC_TOOLCHAIN_DIR)$(notdir $(CROSS_COMPILE))
 
