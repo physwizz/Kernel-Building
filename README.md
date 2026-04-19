@@ -44,9 +44,9 @@ to find your kernel version type make kernelversion
 
 5.    Github
 
-    Go to github.com and Open a new Repo
+Go to github.com and Open a new Repo
 
-    Set up SSH Note: You will need a new SSH key for each computer you use.
+Set up SSH Note: You will need a new SSH key for each computer you use.
 
 git config --global user.email "you@example.com" git config --global user.name "Your Github Name"
 
@@ -99,11 +99,11 @@ clone git@github.com:physwizz/clang-r353983c.git https://github.com/VH-Devices/t
 
 7.    Setting up the repo
 
-    - set up a folder for your kernel.
+set up a folder for your kernel.
 
-    - download the kernel source code from Samsung Open Source
+download the kernel source code from Samsung Open Source
 
-    - Extract the Kernel.tar.gz into the kernel folder
+Extract the Kernel.tar.gz into the kernel folder
 
 Create new repo on GitHub.com Like this one https://github.com/physwizz/New 
 
@@ -418,7 +418,7 @@ curl -LSs "https://raw.githubusercontent.com/rsuntk/KernelSU/main/kernel/setup.s
 Syscall hook: Used for Loadable Kernel Module (LKM) or GKI with this hook. Default hook method on GKI kernels. Does not support armv7l.
 
 CONFIG_KSU_SYSCALL_HOOK=y 
-# CONFIG_KPROBES=y ????
+#CONFIG_KPROBES=y ????
 CONFIG_KRETPROBES=y 
 CONFIG_HAVE_SYSCALL_TRACEPOINTS=y
 
@@ -541,11 +541,11 @@ git push -u origin main
 
 For 4.19
 
-    Remove the contents of drivers/misc/mediatek/connectivity
+Remove the contents of drivers/misc/mediatek/connectivity
 
-    Copy the files from https://github.com/rsuntkOrgs/mtk_connectivity_module to drivers/misc/mediatek/connectivity
+Copy the files from https://github.com/rsuntkOrgs/mtk_connectivity_module to drivers/misc/mediatek/connectivity
 
-    Build the Kernel
+Build the Kernel
 
 
  Note: The driver currently only support 4.19 kernel, and only support mt6768 and mt6765 platform (tested on A055F, A045F, and A042F)
@@ -573,9 +573,9 @@ Open kernel/modules.c, and apply this patch:
 
 @@ -3097,7 +3097,7 @@ } else if (!same_magic(modmagic, vermagic, info->index.vers)) { pr_err("%s: version magic '%s' should be '%s'\n", info->name, modmagic, vermagic);
 
-    return -ENOEXEC;
+return -ENOEXEC;
 
-    //return -ENOEXEC; }
+//return -ENOEXEC; }
 
 if (!get_modinfo(info, "intree")) {
 
