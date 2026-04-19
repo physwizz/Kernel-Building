@@ -9,7 +9,11 @@ Use Linux 64bit (I use Linux Mint Mate)
 
 1.    Linux setup 
 
-sudo apt update sudo apt upgrade sudo apt-get install git-all make gcc
+            sudo apt update 
+
+            sudo apt upgrade 
+
+            sudo apt-get install git-all make gcc
 
 git config --global user.email "you@example.com" git config --global user.name "Your Github Name"
 
