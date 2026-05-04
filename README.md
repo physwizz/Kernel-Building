@@ -416,9 +416,11 @@ https://github.com/rsuntk/KernelSU
     curl -LSs "https://raw.githubusercontent.com/rsuntk/KernelSU/main/kernel/setup.sh" | bash -s main
 
 #3.0.0-30-legacy
+
     curl -LSs "https://raw.githubusercontent.com/rsuntk/KernelSU/main/kernel/setup.sh" | bash -s v3.0.0-30-legacy
 
 #3.2.2-10-legacy
+
     curl -LSs "https://raw.githubusercontent.com/rsuntk/KernelSU/main/kernel/setup.sh" | bash -s v3.2.2-10-legacy
 
 #Extra patch for auto hook method
