@@ -1,4 +1,3 @@
-
 Kernel-Building
 
 Building a Kernel for beginners @physwizz
@@ -387,18 +386,11 @@ CONFIG_HAVE_KPROBES=n
 
 CONFIG_KPROBE_EVENTS=n
 
-    git remote add -f G780 git@github.com:physwizz/G780f-T-m-S20FE.git
-
-    git config merge.renameLimit 999999
-
-    git cherry-pick ef9130b4c214c72da35132cf42d5546b865e2f02
-
-
 do_faccessat, usually in fs/open.c 
 
-do_execveat_common, usually in fs/exec.c vfs_read, 
+do_execveat_common, usually in fs/exec.c 
 
-usually in fs/read_write.c 
+vfs_read, usually in fs/read_write.c 
 
 vfs_statx, usually in fs/stat.c
 
