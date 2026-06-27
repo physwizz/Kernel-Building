@@ -1,3 +1,4 @@
+
 Kernel-Building
 
 Building a Kernel for beginners @physwizz
@@ -39,11 +40,11 @@ git config --global user.email "you@example.com" git config --global user.name "
 
 Download the Source Code (https://opensource.samsung.com/main) 
 
-eg. Search for A205 and select QQ version (Latin) Extract the kernel.tar.7z extract into "Kernel" folder
+extract into "Kernel" folder
 
 4. Kernel version
 
-to find your kernel version type make kernelversion
+to find your kernel version type make kernelversion or look at makefile
 
 5.    Github
 
@@ -102,33 +103,27 @@ clone git@github.com:physwizz/clang-r353983c.git https://github.com/VH-Devices/t
 
 7.    Setting up the repo
 
-set up a folder for your kernel.
-
-download the kernel source code from Samsung Open Source
-
-Extract the Kernel.tar.gz into the kernel folder
-
 Create new repo on GitHub.com Like this one https://github.com/physwizz/New 
 
 Copy the text section "or create a new repository on the command line" Something like this
 
-echo "# New" >> README.md 
-git init git add README.md 
-git commit -m "first commit" 
-git branch -M main 
-git remote add origin git@github.com:physwizz/New.git (example)
-git push -u origin main
+    echo "# New" >> README.md 
+    git init git add README.md 
+    git commit -m "first commit" 
+    git branch -M main 
+    git remote add origin git@github.com:physwizz/New.git (example)
+    git push -u origin main
 
 Open Terminal In The Kernel Folder
 
 Paste the section from github 
 Type 
 
-git add --all #( or use add .) 
+    git add --all #( or use add .) 
 
-git commit -a Type "initial" Ctrl o Ctrl x 
+    git commit -a Type "initial" Ctrl o Ctrl x 
 
-git push -u origin main (DON'T add --all AFTER BUILD)
+    git push -u origin main (DON'T add --all AFTER BUILD)
 
 8. Personal setup
 Edit arch/arm64/defconfig/<your defconfig>
@@ -139,13 +134,12 @@ CONFIG_LOCALVERSION_AUTO=n
 
 9.    Add the toolchains 
 
-
 Add the toolchains as explained in README_Kernel.txt 
 You may want to create the "toolchain" directory and insert 2 of my toolchains (usually GCC and Clang)
 
 10.   To Build the kernel
 
-type
+type hte following instruction
 
     ./build_kernel.sh
 
@@ -155,15 +149,15 @@ You may need to open file properties and allow executing file as a program
 
 open a terminal in the kernel directory
 
-git remote rm origin 
+    git remote rm origin 
 
-git remote add origin git@github.com:physwizz/New.git (example)
+    git remote add origin git@github.com:physwizz/New.git (example)
 
-git fetch --all
+    git fetch --all
 
 12.    to cherry-pick
 
-git remote add other repo
+git remote add <name> <other repo>
 
 eg git remote add physwizz git@github.com:physwizz/A205_ker.git
 
@@ -184,6 +178,7 @@ Head =========
 <<<<
 
             Txt txt txt txt
+>>>>
 
 Delete the lower line Then delete all lines from <<<< to Head
 
@@ -205,6 +200,10 @@ make clean && make mrproper git commit -a
 write comment ctrl o (to output) enter ctrl x (to exit)
 
 git add --all
+
+git push -u origin main
+
+or
 
 git push origin main -f
 
@@ -378,7 +377,9 @@ CONFIG_KPROBE_EVENTS=y
 
     curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -s v0.9.5
 
-#KernelSU CONFIG_KSU=y
+#KernelSU 
+
+CONFIG_KSU=y
 
 CONFIG_KPROBES=n
 
@@ -390,7 +391,7 @@ do_faccessat, usually in fs/open.c
 
 do_execveat_common, usually in fs/exec.c 
 
-vfs_read, usually in fs/read_write.c 
+vfs_read,  usually in fs/read_write.c 
 
 vfs_statx, usually in fs/stat.c
 
@@ -403,16 +404,14 @@ C90 forbids mixing declarations and code #move code to the beginning of the bloc
 
 23.    rksu
 
-https://github.com/rsuntk/KernelSU
+#https://github.com/rsuntk/KernelSU
 
     curl -LSs "https://raw.githubusercontent.com/rsuntk/KernelSU/main/kernel/setup.sh" | bash -s main
 
 #3.0.0-30-legacy
-
     curl -LSs "https://raw.githubusercontent.com/rsuntk/KernelSU/main/kernel/setup.sh" | bash -s v3.0.0-30-legacy
 
 #3.2.2-10-legacy
-
     curl -LSs "https://raw.githubusercontent.com/rsuntk/KernelSU/main/kernel/setup.sh" | bash -s v3.2.2-10-legacy
 
 #Extra patch for auto hook method
@@ -478,9 +477,9 @@ https://stackoverflow.com/questions/4340873/how-do-you-switch-between-python-2-a
 
 sudo -s
 
-which python2.7
+    which python2.7
 
-which python3
+    which python3
 
     virtualenv -p /usr/bin/python2.7 Vpy27
 
@@ -493,7 +492,6 @@ sudo -s
     virtualenv -p /usr/bin/python2.7 Vpy27
 
     source Vpy27/bin/activate
-
 
 
 25.    lz4 default in zram 
@@ -564,7 +562,8 @@ For 4.14
 Updated. quick update command:
 
     rm -rf drivers/misc/mediatek/connectivity && cd drivers/misc/mediatek/ && git clone https://github.com/rsuntkOrgs/mtk_connectivity_module --depth=1 -b staging-4.14 connectivity && rm -rf connectivity/.git && cd ../../..
-For Snapdragon from @RissuDesu
+
+wifi fix For Snapdragon from @RissuDesu
 
 CONFIG_MODVERSIONS=n
 
@@ -596,6 +595,12 @@ git remote add mtk -f git@github.com:Samsung-MT6769-Devs/android_kernel_samsung_
 git config merge.renameLimit 999999
 
 git cherry-pick 8fd11aaf66cb0429b8a4f41f9a92c1e720045755
+
+6.6 wifi fix
+
+git remote add -f wifi git@github.com:UN1CA/kernel_samsung_mediatek_common.git
+
+git cherry-pick d2a46c059873ca2cbdfd691202cc34bba4c146d2
 
 
 31.  Qualcomm wifi fix
@@ -663,9 +668,9 @@ Initial merge:
 
     git cherry-pick bb5683f456e9b1df807bf6219876bbb27aa1bc68^..ee4877dab6a387790f4147595a52264d971aeb88
 
-#gsi 
+#gsi touch fix 
 
-    touch fix git cherry-pick a0d6921e60c1e749d5b0a65a65de2b60ad660571
+    git cherry-pick a0d6921e60c1e749d5b0a65a65de2b60ad660571
 
 #extra optimisations 
 
@@ -774,9 +779,13 @@ CONFIG_SECURITY_DEFEX=n
 
 CONFIG_PROCA=n
 
-CONFIG_CPU_FREQ_GOV_PERFORMANCE=y CONFIG_CPU_FREQ_GOV_POWERSAVE=y
+CONFIG_CPU_FREQ_GOV_PERFORMANCE=y 
 
-CONFIG_CPU_FREQ_GOV_USERSPACE=y CONFIG_CPU_FREQ_GOV_ONDEMAND=y
+CONFIG_CPU_FREQ_GOV_POWERSAVE=y
+
+CONFIG_CPU_FREQ_GOV_USERSPACE=y 
+
+CONFIG_CPU_FREQ_GOV_ONDEMAND=y
 
 CONFIG_CPU_FREQ_GOV_INTERACTIVE=y
 
@@ -790,7 +799,9 @@ CONFIG_TIMA_LKM_BLOCK=n
 
 CONFIG_TIMA_LKMAUTH_CODE_PROT=n 
 
-CONFIG_UH=n CONFIG_UH_RKP=n 
+CONFIG_UH=n 
+
+CONFIG_UH_RKP=n 
 
 CONFIG_RKP_KDP=n 
 
@@ -824,7 +835,6 @@ CONFIG_INTEGRITY_AUDIT=n
 
 CONFIG_SECURITY_DSMS=n 
 
-CONFIG_PROCA=n
 
 CONFIG_CC_OPTIMIZE_FOR_PERFORMANCE=y 
 
@@ -832,7 +842,9 @@ CONFIG_CC_OPTIMIZE_FOR_PERFORMANCE_O3_OFAST_SUB_OPTIONS=y
 
 CONFIG_CC_OPTIMIZE_FOR_SIZE=n
 
-CONFIG_KNOX_NCM=n CONFIG_ZRAM=y 
+CONFIG_KNOX_NCM=n 
+
+CONFIG_ZRAM=y 
 
 CONFIG_ZRAM_WRITEBACK=y 
 
@@ -861,3 +873,4 @@ CONFIG_PROCA=n
 CONFIG_FIVE=n
 
 @physwizz
+
