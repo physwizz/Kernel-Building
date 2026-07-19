@@ -34,7 +34,13 @@ git config --global user.email "you@example.com" git config --global user.name "
 
 2.    install repo
 
-    mkdir -p ~/.bin PATH="${HOME}/.bin:${PATH}" curl https://storage.googleapis.com/git-repo-downloads/repo > ~/.bin/repo chmod a+rx ~/.bin/repo
+    mkdir -p ~/.bin 
+    
+    PATH="${HOME}/.bin:${PATH}" 
+    
+    curl https://storage.googleapis.com/git-repo-downloads/repo > ~/.bin/repo 
+    
+    chmod a+rx ~/.bin/repo
 
 3.    Kernel setup
 
